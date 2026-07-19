@@ -1,136 +1,194 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0d1016">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Hall AI Ver.2</title>
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" href="./icon-192.png">
-  <style>
-    :root{--bg:#0d1016;--card:#171c26;--card2:#222938;--line:#303949;--txt:#f7f8fb;--muted:#aeb7c6;--p:#8c52ff;--c:#49c6f0;--g:#30d158;--y:#ffb020}
-    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#0d1016,#121824 55%,#0d1016);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
-    main{max-width:760px;margin:auto;padding:18px 14px 110px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-    .brand{display:flex;gap:12px;align-items:center}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--p),var(--c));display:grid;place-items:center;font-size:25px}
-    h1{font-size:22px;margin:0}.small{font-size:12px;color:var(--muted)}.badge{font-size:12px;color:var(--g);background:rgba(48,209,88,.12);padding:7px 9px;border-radius:999px}
-    .card{background:rgba(23,28,38,.97);border:1px solid var(--line);border-radius:21px;padding:16px;margin-bottom:14px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
-    h2{font-size:17px;margin:0 0 14px}label{display:block;color:var(--muted);font-size:12px;margin:12px 0 6px}
-    select,input,textarea{width:100%;padding:13px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card2);color:var(--txt);font-size:16px}
-    textarea{min-height:210px;font-family:ui-monospace,monospace;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    button{border:0;border-radius:14px;padding:14px 15px;font-weight:800;font-size:15px}.primary{width:100%;margin-top:14px;color:#fff;background:linear-gradient(135deg,var(--p),#6d5cff)}
-    .secondary{color:#fff;background:var(--card2);border:1px solid var(--line)}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
-    .hero{padding:17px;border-radius:18px;background:linear-gradient(135deg,rgba(140,82,255,.23),rgba(73,198,240,.12));border:1px solid rgba(140,82,255,.4)}
-    .hero b{font-size:18px}.meta{font-size:12px;color:var(--muted);margin-top:6px}.rank{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
-    .rank:last-child{border:0}.n{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--p),var(--c));display:grid;place-items:center;font-weight:900}
-    .rb{flex:1}.machine{font-size:17px;font-weight:900}.reason{font-size:13px;color:var(--muted);line-height:1.55;margin-top:4px}.score{font-size:12px;color:var(--g);white-space:nowrap}
-    .empty{text-align:center;color:var(--muted);padding:28px 8px}.note{font-size:12px;color:var(--muted);line-height:1.65}
-    .tabs{position:fixed;left:0;right:0;bottom:0;background:rgba(13,16,22,.97);border-top:1px solid var(--line);backdrop-filter:blur(15px);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom)}
-    .tabs>div{width:min(760px,100%);display:grid;grid-template-columns:repeat(3,1fr)}.tab{background:transparent;color:var(--muted);border-radius:0;font-size:12px}.tab span{display:block;font-size:21px;margin-bottom:3px}.tab.active{color:white}
-    .view{display:none}.view.active{display:block}.toast{position:fixed;left:50%;bottom:95px;transform:translateX(-50%);background:#252d3a;padding:10px 14px;border-radius:12px;opacity:0;transition:.2s}.toast.show{opacity:1}
-    @media(max-width:430px){.grid{grid-template-columns:1fr}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1016">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Hall AI Ver.3</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon-192.png">
+<style>
+:root{--bg:#0d1016;--card:#171c26;--card2:#222938;--line:#303949;--txt:#f7f8fb;--muted:#aeb7c6;--p:#8c52ff;--c:#49c6f0;--g:#30d158;--y:#ffb020;--r:#ff5a5f}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0d1016,#121824 55%,#0d1016);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+main{max-width:760px;margin:auto;padding:18px 14px 112px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--p),var(--c));display:grid;place-items:center;font-size:25px}
+h1{font-size:22px;margin:0}.small{font-size:12px;color:var(--muted)}.badge{font-size:12px;color:var(--g);background:rgba(48,209,88,.12);padding:7px 9px;border-radius:999px}
+.card{background:rgba(23,28,38,.97);border:1px solid var(--line);border-radius:21px;padding:16px;margin-bottom:14px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+h2{font-size:17px;margin:0 0 14px}h3{font-size:15px;margin:14px 0 8px}label{display:block;color:var(--muted);font-size:12px;margin:11px 0 6px}
+select,input,textarea{width:100%;padding:13px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card2);color:var(--txt);font-size:16px}
+textarea{min-height:105px;resize:vertical}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:8px}
+button{border:0;border-radius:14px;padding:13px 14px;font-weight:800;font-size:14px;cursor:pointer}.primary{width:100%;margin-top:14px;color:#fff;background:linear-gradient(135deg,var(--p),#6d5cff)}
+.secondary{color:#fff;background:var(--card2);border:1px solid var(--line)}.danger{color:#fff;background:rgba(255,90,95,.16);border:1px solid rgba(255,90,95,.45)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}.hero{padding:17px;border-radius:18px;background:linear-gradient(135deg,rgba(140,82,255,.23),rgba(73,198,240,.12));border:1px solid rgba(140,82,255,.4)}
+.hero b{font-size:18px}.meta{font-size:12px;color:var(--muted);margin-top:6px}.rank{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.rank:last-child{border:0}.n{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--p),var(--c));display:grid;place-items:center;font-weight:900}.rb{flex:1}
+.machine{font-size:17px;font-weight:900}.reason{font-size:13px;color:var(--muted);line-height:1.55;margin-top:4px}.score{font-size:12px;color:var(--g);white-space:nowrap}
+.empty{text-align:center;color:var(--muted);padding:28px 8px}.note{font-size:12px;color:var(--muted);line-height:1.65}.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(255,176,32,.13);color:var(--y);font-size:11px}
+.list{display:grid;gap:8px}.item{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:11px}
+.item .grow{flex:1}.item b{font-size:14px}.item small{display:block;color:var(--muted);margin-top:3px}.mini{padding:8px 10px;font-size:12px}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:rgba(13,16,22,.97);border-top:1px solid var(--line);backdrop-filter:blur(15px);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom)}
+.tabs>div{width:min(760px,100%);display:grid;grid-template-columns:repeat(4,1fr)}.tab{background:transparent;color:var(--muted);border-radius:0;font-size:11px;padding:12px 6px}.tab span{display:block;font-size:20px;margin-bottom:3px}.tab.active{color:white}
+.view{display:none}.view.active{display:block}.toast{position:fixed;left:50%;bottom:95px;transform:translateX(-50%);background:#252d3a;padding:10px 14px;border-radius:12px;opacity:0;transition:.2s;z-index:10}.toast.show{opacity:1}
+.divider{height:1px;background:var(--line);margin:14px 0}.mutedbox{padding:12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px dashed var(--line)}
+@media(max-width:520px){.grid,.grid3{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <main>
-  <header class="top">
-    <div class="brand"><div class="logo">🎰</div><div><h1>Hall AI</h1><div class="small">Ver.2・予測データ管理対応</div></div></div>
-    <div class="badge">端末内保存</div>
-  </header>
+<header class="top">
+  <div class="brand"><div class="logo">🎰</div><div><h1>Hall AI</h1><div class="small">Ver.3・実用入力対応</div></div></div>
+  <div class="badge">端末内保存</div>
+</header>
 
-  <section id="today" class="view active">
-    <div class="card">
-      <h2>今日の条件</h2>
-      <label>店舗</label><select id="store"></select>
-      <div class="grid">
-        <div><label>日付</label><input id="date" type="date"></div>
-        <div><label>イベント</label><select id="event"></select></div>
-      </div>
-      <button class="primary" id="show">今日の狙い目を表示</button>
-    </div>
-    <div id="result"></div>
-  </section>
+<section id="today" class="view active">
+  <div class="card">
+    <h2>今日の条件</h2>
+    <label>店舗</label><select id="todayStore"></select>
+    <div class="grid"><div><label>日付</label><input id="todayDate" type="date"></div><div><label>イベント</label><select id="todayEvent"></select></div></div>
+    <button class="primary" id="showToday">今日の狙い目を表示</button>
+  </div>
+  <div id="todayResult"></div>
+</section>
 
-  <section id="import" class="view">
-    <div class="card">
-      <h2>ChatGPTから予測を登録</h2>
-      <p class="note">ChatGPTが作ったJSONを貼り付けて保存します。複数日分をまとめて登録することもできます。</p>
-      <textarea id="json" placeholder="ここにHall AI用JSONを貼り付け"></textarea>
-      <div class="row" style="margin-top:10px">
-        <button class="primary" id="save" style="margin:0">保存</button>
-        <button class="secondary" id="sample">見本</button>
-      </div>
+<section id="register" class="view">
+  <div class="card">
+    <h2>予測をフォームで登録</h2>
+    <div class="grid">
+      <div><label>店舗</label><select id="regStore"></select></div>
+      <div><label>イベント</label><select id="regEvent"></select></div>
     </div>
-    <div class="card">
-      <h2>ChatGPTへの頼み方</h2>
-      <p class="note">「Hall AI用JSONで、店舗・日付・イベント・おすすめ機種・期待度・根拠・立ち回りを作って」と送ってください。</p>
-    </div>
-  </section>
+    <label>日付</label><input id="regDate" type="date">
+    <label>見出し</label><input id="headline" placeholder="例：メイン機種と並びを優先">
+    <h3>おすすめ機種</h3>
+    <div id="recommendRows"></div>
+    <button class="secondary" id="addRec" style="width:100%;margin-top:8px">＋ おすすめ機種を追加</button>
+    <label>立ち回り</label><textarea id="plan" placeholder="朝一の動き、移動条件、優先順位など"></textarea>
+    <label>注意点</label><textarea id="risk" placeholder="弱い場合の見切り、過信しない条件など"></textarea>
+    <button class="primary" id="savePrediction">予測を保存</button>
+  </div>
+</section>
 
-  <section id="settings" class="view">
-    <div class="card">
-      <h2>登録状況</h2>
-      <div id="stats" class="note"></div>
-      <div class="row" style="margin-top:12px">
-        <button class="secondary" id="backup">バックアップ</button>
-        <button class="secondary" id="restore">復元</button>
-        <input id="restoreFile" type="file" accept="application/json" hidden>
-      </div>
-      <button class="secondary" id="clear" style="width:100%;margin-top:8px">全データ削除</button>
+<section id="manage" class="view">
+  <div class="card">
+    <h2>店舗・イベント・機種を管理</h2>
+    <h3>店舗</h3>
+    <div class="row"><input id="newStore" placeholder="店舗名"><button class="secondary" id="addStore">追加</button></div>
+    <div id="storeList" class="list" style="margin-top:10px"></div>
+    <div class="divider"></div>
+    <h3>イベント</h3>
+    <div class="row"><input id="newEvent" placeholder="イベント名"><button class="secondary" id="addEvent">追加</button></div>
+    <div id="eventList" class="list" style="margin-top:10px"></div>
+    <div class="divider"></div>
+    <h3>機種</h3>
+    <div class="row"><input id="newMachine" placeholder="機種名"><button class="secondary" id="addMachine">追加</button></div>
+    <div id="machineList" class="list" style="margin-top:10px"></div>
+  </div>
+</section>
+
+<section id="history" class="view">
+  <div class="card">
+    <h2>登録済み予測</h2>
+    <div id="historyList" class="list"></div>
+  </div>
+  <div class="card">
+    <h2>バックアップ</h2>
+    <div class="row">
+      <button class="secondary" id="backup">保存</button>
+      <button class="secondary" id="restore">読込</button>
+      <input id="restoreFile" type="file" accept="application/json" hidden>
     </div>
-    <div class="card">
-      <h2>更新について</h2>
-      <p class="note">アプリ表示が古い場合は、Chromeでページを再読み込みしてください。Ver.2ではキャッシュを更新しやすい設定に変更しています。</p>
-    </div>
-  </section>
+    <button class="danger" id="clearAll" style="width:100%;margin-top:8px">全データ削除</button>
+    <p class="note">店舗・イベント・機種・予測をまとめてバックアップします。</p>
+  </div>
+</section>
 </main>
 
 <nav class="tabs"><div>
-  <button class="tab active" data-view="today"><span>🏠</span>今日</button>
-  <button class="tab" data-view="import"><span>🤖</span>予測登録</button>
-  <button class="tab" data-view="settings"><span>⚙️</span>設定</button>
+<button class="tab active" data-view="today"><span>🏠</span>今日</button>
+<button class="tab" data-view="register"><span>✍️</span>予測登録</button>
+<button class="tab" data-view="manage"><span>🗂️</span>マスタ管理</button>
+<button class="tab" data-view="history"><span>📚</span>履歴</button>
 </div></nav>
 <div id="toast" class="toast"></div>
 
 <script>
-const KEY='hall_ai_predictions_v2';
-let data=JSON.parse(localStorage.getItem(KEY)||'[]');
+const KEY='hall_ai_v3';
+const defaults={
+ stores:['ハイパーアロー美原'],
+ events:['鬼黄取材2'],
+ machines:['L炎炎ノ消防隊2','スマスロ北斗の拳','ジャグラーシリーズ'],
+ predictions:[]
+};
+let db=(()=>{try{return {...defaults,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{return structuredClone(defaults)}})();
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const today=()=>new Date().toISOString().slice(0,10);
-function toast(s){const t=$('#toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)}
-function uniq(a){return [...new Set(a.filter(Boolean))]}
-function persist(){localStorage.setItem(KEY,JSON.stringify(data));refresh();stats()}
-function refresh(){
-  const stores=uniq(data.map(x=>x.store)), events=uniq(data.map(x=>x.event));
-  $('#store').innerHTML=stores.length?stores.map(x=>`<option>${esc(x)}</option>`).join(''):'<option>データなし</option>';
-  $('#event').innerHTML=events.length?events.map(x=>`<option>${esc(x)}</option>`).join(''):'<option>データなし</option>';
+function toast(s){const t=$('#toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
+function persist(){localStorage.setItem(KEY,JSON.stringify(db));refreshAll()}
+function options(arr){return arr.length?arr.map(x=>`<option>${esc(x)}</option>`).join(''):'<option>データなし</option>'}
+function refreshAll(){
+  ['todayStore','regStore'].forEach(id=>$('#'+id).innerHTML=options(db.stores));
+  ['todayEvent','regEvent'].forEach(id=>$('#'+id).innerHTML=options(db.events));
+  renderMaster();renderHistory();
 }
-function stats(){const s=uniq(data.map(x=>x.store)).length,e=uniq(data.map(x=>x.event)).length;$('#stats').innerHTML=`予測データ：<b>${data.length}件</b><br>店舗：${s}件 / イベント：${e}件`}
-function normalizeOne(x){
-  const o={store:String(x.store||x.hall||'').trim(),date:String(x.date||'').trim(),event:String(x.event||'').trim(),
-    headline:String(x.headline||x.summary||'本日の狙い目').trim(),recommendations:Array.isArray(x.recommendations)?x.recommendations:[],
-    plan:String(x.plan||'').trim(),risk:String(x.risk||'').trim(),updatedAt:new Date().toISOString()};
-  if(!o.store||!o.date||!o.event) throw new Error('store・date・eventが必要です'); return o;
+function renderMaster(){
+  $('#storeList').innerHTML=db.stores.map((x,i)=>`<div class="item"><div class="grow"><b>${esc(x)}</b></div><button class="danger mini" onclick="removeMaster('stores',${i})">削除</button></div>`).join('')||'<div class="empty">未登録</div>';
+  $('#eventList').innerHTML=db.events.map((x,i)=>`<div class="item"><div class="grow"><b>${esc(x)}</b></div><button class="danger mini" onclick="removeMaster('events',${i})">削除</button></div>`).join('')||'<div class="empty">未登録</div>';
+  $('#machineList').innerHTML=db.machines.map((x,i)=>`<div class="item"><div class="grow"><b>${esc(x)}</b></div><button class="danger mini" onclick="removeMaster('machines',${i})">削除</button></div>`).join('')||'<div class="empty">未登録</div>';
 }
-function normalize(x){if(Array.isArray(x))return x.map(normalizeOne);if(x&&Array.isArray(x.predictions))return x.predictions.map(normalizeOne);return[normalizeOne(x)]}
-function render(x){
-  if(!x){$('#result').innerHTML='<div class="card empty">一致する予測データがありません。<br>「予測登録」からデータを保存してください。</div>';return}
-  const rs=Array.isArray(x.recommendations)?x.recommendations:[];
-  $('#result').innerHTML=`<div class="card"><div class="hero"><b>${esc(x.headline)}</b><div class="meta">${esc(x.store)} / ${esc(x.date)} / ${esc(x.event)}</div></div>
-  ${rs.map((r,i)=>`<div class="rank"><div class="n">${i+1}</div><div class="rb"><div class="machine">${esc(r.machine||r.name||'候補機種')}</div><div class="reason">${esc(r.reason||'')}</div></div><div class="score">${Number(r.confidence||r.score||0)}%</div></div>`).join('')||'<div class="empty">候補がありません</div>'}
-  ${x.plan?`<p class="note"><b>立ち回り：</b>${esc(x.plan)}</p>`:''}${x.risk?`<p class="note"><b>注意：</b>${esc(x.risk)}</p>`:''}</div>`;
+window.removeMaster=(type,i)=>{if(confirm('削除しますか？')){db[type].splice(i,1);persist()}};
+function addMaster(type,input){
+ const v=$(input).value.trim(); if(!v)return;
+ if(!db[type].includes(v))db[type].push(v); $(input).value=''; persist(); toast('追加しました')
 }
-$('#date').value=today();
-$('#show').onclick=()=>render(data.find(x=>x.store===$('#store').value&&x.date===$('#date').value&&x.event===$('#event').value));
-$('#save').onclick=()=>{try{const items=normalize(JSON.parse($('#json').value));items.forEach(it=>{const i=data.findIndex(x=>x.store===it.store&&x.date===it.date&&x.event===it.event);i>=0?data[i]=it:data.push(it)});persist();toast(`${items.length}件保存しました`)}catch(e){alert('保存できませんでした\n'+e.message)}};
-$('#sample').onclick=()=>$('#json').value=JSON.stringify({store:'ハイパーアロー美原',date:today(),event:'鬼黄取材2',headline:'メイン機種と並びを優先',recommendations:[{machine:'L炎炎ノ消防隊2',confidence:84,reason:'設置比率とイベント傾向を評価'},{machine:'スマスロ北斗の拳',confidence:76,reason:'メイン島の投入期待'},{machine:'ジャグラーシリーズ',confidence:68,reason:'並び・末尾の補完候補'}],plan:'朝一は上位機種の島状況を確認し、弱ければ次点へ移動。',risk:'見本データのため実戦判断には使用しないでください。'},null,2);
-$('#backup').onclick=()=>{const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='hall-ai-backup.json';a.click();URL.revokeObjectURL(a.href)};
+$('#addStore').onclick=()=>addMaster('stores','#newStore');
+$('#addEvent').onclick=()=>addMaster('events','#newEvent');
+$('#addMachine').onclick=()=>addMaster('machines','#newMachine');
+
+let recCount=0;
+function addRecRow(v={machine:'',confidence:70,reason:''}){
+ const id=recCount++;
+ const wrap=document.createElement('div');wrap.className='mutedbox';wrap.dataset.rec=id;wrap.style.marginBottom='8px';
+ wrap.innerHTML=`<div class="grid3"><select class="r-machine">${options(db.machines)}</select><input class="r-score" type="number" min="0" max="100" value="${Number(v.confidence||70)}" placeholder="期待度"><button class="danger" onclick="this.closest('[data-rec]').remove()">削除</button></div><label>根拠</label><textarea class="r-reason" placeholder="イベント傾向、設置比率、並び、末尾など">${esc(v.reason||'')}</textarea>`;
+ wrap.querySelector('.r-machine').value=v.machine||db.machines[0]||'';
+ $('#recommendRows').appendChild(wrap);
+}
+$('#addRec').onclick=()=>addRecRow();
+function resetForm(){
+ $('#regDate').value=today();$('#headline').value='';$('#plan').value='';$('#risk').value='';$('#recommendRows').innerHTML='';addRecRow();addRecRow();addRecRow();
+}
+$('#savePrediction').onclick=()=>{
+ const recs=[...document.querySelectorAll('[data-rec]')].map(x=>({machine:x.querySelector('.r-machine').value,confidence:Number(x.querySelector('.r-score').value||0),reason:x.querySelector('.r-reason').value.trim()})).filter(x=>x.machine);
+ const p={store:$('#regStore').value,event:$('#regEvent').value,date:$('#regDate').value,headline:$('#headline').value.trim()||'本日の狙い目',recommendations:recs,plan:$('#plan').value.trim(),risk:$('#risk').value.trim(),updatedAt:new Date().toISOString()};
+ if(!p.store||!p.event||!p.date||!recs.length){alert('店舗・イベント・日付・おすすめ機種を入力してください');return}
+ const i=db.predictions.findIndex(x=>x.store===p.store&&x.event===p.event&&x.date===p.date);
+ i>=0?db.predictions[i]=p:db.predictions.push(p);persist();toast('予測を保存しました')
+};
+function renderPrediction(p){
+ if(!p){$('#todayResult').innerHTML='<div class="card empty">一致する予測がありません。<br>「予測登録」から登録してください。</div>';return}
+ $('#todayResult').innerHTML=`<div class="card"><div class="hero"><b>${esc(p.headline)}</b><div class="meta">${esc(p.store)} / ${esc(p.date)} / ${esc(p.event)}</div></div>
+ ${(p.recommendations||[]).map((r,i)=>`<div class="rank"><div class="n">${i+1}</div><div class="rb"><div class="machine">${esc(r.machine)}</div><div class="reason">${esc(r.reason)}</div></div><div class="score">${Number(r.confidence||0)}%</div></div>`).join('')}
+ ${p.plan?`<p class="note"><b>立ち回り：</b>${esc(p.plan)}</p>`:''}${p.risk?`<p class="note"><b>注意：</b>${esc(p.risk)}</p>`:''}</div>`;
+}
+$('#showToday').onclick=()=>renderPrediction(db.predictions.find(x=>x.store===$('#todayStore').value&&x.event===$('#todayEvent').value&&x.date===$('#todayDate').value));
+function renderHistory(){
+ const arr=[...db.predictions].sort((a,b)=>b.date.localeCompare(a.date));
+ $('#historyList').innerHTML=arr.map((p,i)=>`<div class="item"><div class="grow"><b>${esc(p.date)}｜${esc(p.store)}</b><small>${esc(p.event)}・${(p.recommendations||[]).length}候補</small></div><button class="secondary mini" onclick="loadPrediction(${i})">編集</button><button class="danger mini" onclick="deletePrediction(${i})">削除</button></div>`).join('')||'<div class="empty">まだ登録がありません</div>';
+ window._sortedPredictions=arr;
+}
+window.loadPrediction=i=>{
+ const p=window._sortedPredictions[i];document.querySelector('[data-view="register"]').click();
+ $('#regStore').value=p.store;$('#regEvent').value=p.event;$('#regDate').value=p.date;$('#headline').value=p.headline;$('#plan').value=p.plan||'';$('#risk').value=p.risk||'';
+ $('#recommendRows').innerHTML='';(p.recommendations||[]).forEach(addRecRow);window.scrollTo({top:0,behavior:'smooth'});
+};
+window.deletePrediction=i=>{const p=window._sortedPredictions[i];if(confirm('この予測を削除しますか？')){db.predictions=db.predictions.filter(x=>x!==p);persist()}};
+$('#backup').onclick=()=>{const b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='hall-ai-v3-backup.json';a.click();URL.revokeObjectURL(a.href)};
 $('#restore').onclick=()=>$('#restoreFile').click();
-$('#restoreFile').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());if(!Array.isArray(x))throw 0;data=x;persist();toast('復元しました')}catch{alert('復元できませんでした')}};
-$('#clear').onclick=()=>{if(confirm('全データを削除しますか？')){data=[];persist();render(null)}};
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.view).classList.add('active');if(b.dataset.view==='settings')stats()});
-refresh();stats();render(null);
+$('#restoreFile').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());if(!x.stores||!x.events||!x.machines||!x.predictions)throw 0;db=x;persist();toast('復元しました')}catch{alert('復元できませんでした')}};
+$('#clearAll').onclick=()=>{if(confirm('全データを削除しますか？')){db=structuredClone(defaults);persist();resetForm();renderPrediction(null)}};
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.view).classList.add('active');if(b.dataset.view==='history')renderHistory()});
+$('#todayDate').value=today();resetForm();refreshAll();renderPrediction(null);
 if('serviceWorker'in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
 </script>
 </body></html>
