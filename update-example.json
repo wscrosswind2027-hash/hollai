@@ -1,0 +1,63 @@
+{
+  "format": "HALL_AI_UPDATE_V3",
+  "hall": "ハイパーアロー美原",
+  "event": "鬼黄取材2",
+  "updated_at": "2026-07-20T07:00:00+09:00",
+  "source_summary": "公開結果と直近傾向を統合",
+  "prediction": {
+    "date": "2026-07-20",
+    "headline": "L 炎炎ノ消防隊2を本命",
+    "rankings": [
+      {
+        "machine": "L 炎炎ノ消防隊2",
+        "confidence": 84,
+        "reasons": [
+          "直近傾向が上向き",
+          "同イベントとの相性が良い"
+        ]
+      },
+      {
+        "machine": "モンキーターンV",
+        "confidence": 73,
+        "reasons": [
+          "過去実績が安定"
+        ]
+      }
+    ],
+    "plan": "抽選が良ければ本命へ。取れなければ島状況を確認して無理をしない。"
+  },
+  "knowledge": [
+    {
+      "machine": "L 炎炎ノ消防隊2",
+      "score": 86,
+      "confidence": 84,
+      "trend": "up",
+      "reasons": [
+        "投入率が高い",
+        "直近4回で改善"
+      ],
+      "evidence": {
+        "sample_size": 12,
+        "hit_rate": 72
+      },
+      "ai_note": "現在の最優先候補"
+    }
+  ],
+  "notes": [
+    "角より並び傾向を重視"
+  ],
+  "hall_dna": {
+    "new_machine_focus": 78,
+    "main_machine_focus": 88,
+    "lineup_focus": 84,
+    "corner_focus": 35,
+    "event_loyalty": 82,
+    "variety_focus": 42,
+    "stability": 76,
+    "confidence": 81,
+    "notes": [
+      "主力機種と並びを優先する傾向",
+      "イベント時の再現性は比較的高い"
+    ]
+  }
+}
